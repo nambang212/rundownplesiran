@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Library untuk download JPG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         /* --- Global Style & Variables --- */
         :root {
@@ -101,6 +103,13 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* Class untuk menonaktifkan animasi saat screenshot */
+        .no-animation {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
         }
 
         /* --- Delay Animasi --- */
@@ -202,6 +211,34 @@
 
         .tag { display: inline-block; margin-top: 12px; padding: 5px 12px; background-color: #eaf6ff; color: var(--primary-color); border-radius: 15px; font-size: 0.8rem; font-weight: 700; }
 
+        /* --- Checklist Section --- */
+        .checklist-container {
+            padding: 20px;
+            margin: 10px 20px;
+            background-color: var(--card-color);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        .checklist-container h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .checklist-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .checklist-container li {
+            background-color: var(--background-color);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
         /* --- KUMPULAN ANIMASI --- */
         @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
         .travel-icon { animation: drive 2s ease-in-out infinite; }
@@ -211,9 +248,51 @@
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
         /* --- Footer dengan Tombol Aksi --- */
-        .action-footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 15px; background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); text-align: center; box-sizing: border-box; border-top: 1px solid #eee; }
-        .map-button { display: inline-block; width: 90%; max-width: 400px; padding: 15px 20px; background: linear-gradient(135deg, #28a745, #218838); color: white; text-decoration: none; font-weight: 700; border-radius: 15px; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .map-button:active { transform: translateY(2px); box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3); }
+        .action-footer { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            padding: 15px; 
+            background-color: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            text-align: center; 
+            box-sizing: border-box; 
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+        .button { 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 45%; 
+            max-width: 200px; 
+            padding: 15px 10px; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 700; 
+            border-radius: 15px; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+        }
+        .button:active { 
+            transform: translateY(2px); 
+        }
+        .map-button {
+            background: linear-gradient(135deg, #28a745, #218838);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+        .download-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+        }
 
         /* --- Media Queries untuk Fine-Tuning di Layar Kecil --- */
         @media (max-width: 375px) {
@@ -223,6 +302,7 @@
             .checkpoint-content { padding: 12px 15px; }
             .checkpoint-content h3 { font-size: 1.1rem; }
             .checkpoint-content p { font-size: 0.9rem; }
+            .checklist-container ul { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -334,11 +414,28 @@
             </div>
         </div>
     </main>
+
+    <section class="checklist-container">
+        <h2>Perlengkapan Wajib Dibawa</h2>
+        <ul>
+            <li>✅ Baju Ganti & Handuk</li>
+            <li>✅ Alat Sholat</li>
+            <li>✅ Sunscreen & Kacamata</li>
+            <li>✅ Obat Pribadi</li>
+            <li>✅ Power Bank</li>
+            <li>✅ Sandal Jepit</li>
+            <li>✅ Uang Tunai Secukupnya</li>
+            <li>✅ Semangat & Hati Gembira</li>
+        </ul>
+    </section>
     
     <footer class="action-footer">
-        <a href="https://www.google.com/maps/dir/Banjarnegara,+Jawa+Tengah/Gombong,+Kebumen/Pantai+Surumanis,+Kebumen/TOS+Cilacap" target="_blank" class="map-button">
-            Buka Rute Lengkap di Maps
+        <a href="https://www.google.com/maps/dir/Banjarnegara,+Jawa+Tengah/Gombong,+Kebumen/Pantai+Surumanis,+Kebumen/TOS+Cilacap" target="_blank" class="button map-button">
+            <span>🗺️</span> Rute Maps
         </a>
+        <button id="download-btn" class="button download-button">
+            <span>📥</span> Download JPG
+        </button>
     </footer>
 
     <script>
@@ -445,6 +542,42 @@
         // Run the progress update every second on event day
         setInterval(updateTimelineProgress, 1000);
         updateTimelineProgress();
+
+        // --- Download JPG Logic ---
+        const downloadBtn = document.getElementById('download-btn');
+        const footer = document.querySelector('.action-footer');
+
+        downloadBtn.addEventListener('click', () => {
+            footer.style.display = 'none';
+            window.scrollTo(0, 0);
+
+            // Matikan animasi sementara
+            checkpoints.forEach(el => el.classList.add('no-animation'));
+
+            // Beri sedikit waktu agar browser render ulang tanpa animasi
+            setTimeout(() => {
+                html2canvas(document.body, {
+                    allowTaint: true,
+                    useCORS: true,
+                    scrollY: -window.scrollY,
+                    scale: 2 // Meningkatkan resolusi 2x
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'rundown-liburan-HD.jpg';
+                    link.href = canvas.toDataURL('image/jpeg', 0.95); // Kualitas 95%
+                    link.click();
+
+                    // Kembalikan seperti semula
+                    footer.style.display = 'flex';
+                    checkpoints.forEach(el => el.classList.remove('no-animation'));
+                }).catch(err => {
+                    console.error('oops, something went wrong!', err);
+                    // Pastikan tombol dan animasi kembali jika ada error
+                    footer.style.display = 'flex';
+                    checkpoints.forEach(el => el.classList.remove('no-animation'));
+                });
+            }, 100); // Delay 100ms
+        });
     </script>
 
 </body>
