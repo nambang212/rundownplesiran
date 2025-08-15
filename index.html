@@ -50,6 +50,23 @@
         .hero h2 { margin: 0 0 10px 0; font-weight: 700; opacity: 0.9; min-height: 24px; font-size: 1.1rem; }
         .hero p { margin-top: 5px; opacity: 0.9; font-size: 0.9rem; }
 
+        /* --- Weather Button --- */
+        #weather-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: background-color 0.3s ease;
+        }
+        #weather-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
         /* --- Countdown Timer --- */
         .countdown-container {
             background-color: rgba(255, 255, 255, 0.15);
@@ -105,14 +122,8 @@
             animation: fadeIn 0.6s ease-out forwards;
         }
         
-        /* Class untuk menonaktifkan animasi saat screenshot */
-        .no-animation {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            animation: none !important;
-        }
+        .no-animation { opacity: 1 !important; transform: translateY(0) !important; animation: none !important; }
 
-        /* --- Delay Animasi --- */
         .checkpoint:nth-child(1) { animation-delay: 0.1s; }
         .checkpoint:nth-child(2) { animation-delay: 0.2s; }
         .checkpoint:nth-child(3) { animation-delay: 0.3s; }
@@ -123,6 +134,7 @@
         .checkpoint:nth-child(8) { animation-delay: 0.8s; }
         .checkpoint:nth-child(9) { animation-delay: 0.9s; }
         .checkpoint:nth-child(10) { animation-delay: 1.0s; }
+        .checkpoint:nth-child(11) { animation-delay: 1.1s; }
 
         .checkpoint-icon {
             width: 40px;
@@ -169,7 +181,6 @@
             -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
         }
         
-        /* Pola background SVG yang ditanamkan langsung */
         .bg-kumpul::after { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230077b6' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
         .bg-travel::after { background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230077b6' fill-opacity='0.4'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
         .bg-beach::after { background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-10 10c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20zm50 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20zM-10 60c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20zm50 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z' fill='%230077b6' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"); }
@@ -178,66 +189,37 @@
         .bg-prep::after { background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230077b6' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E"); }
         .bg-ishoma::after { background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-10 10c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20zm50 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20zM-10 60c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20zm50 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z' fill='%23ffc107' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"); }
 
-
-        .checkpoint-content > * {
-            position: relative; /* Agar text berada di atas background */
-            z-index: 1;
-        }
-
-        .checkpoint.active .checkpoint-content {
-            border-left-color: var(--live-color);
-            box-shadow: 0 6px 25px rgba(230, 57, 70, 0.3);
-        }
-        .checkpoint.active .checkpoint-icon {
-            border-color: var(--live-color);
-        }
-
+        .checkpoint-content > * { position: relative; z-index: 1; }
+        .checkpoint.active .checkpoint-content { border-left-color: var(--live-color); box-shadow: 0 6px 25px rgba(230, 57, 70, 0.3); }
+        .checkpoint.active .checkpoint-icon { border-color: var(--live-color); }
         .checkpoint-content h3 { margin: 0 0 5px 0; color: var(--primary-color); font-size: 1.2rem; }
         .checkpoint-content p { margin: 5px 0 0 0; line-height: 1.5; font-size: 0.95rem; }
-        
-        .location-info {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-top: 8px;
-            margin-bottom: 8px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #eee;
-        }
-
+        .location-info { font-size: 0.9rem; font-weight: 700; color: var(--secondary-color); margin-top: 8px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
         .checkpoint.final .checkpoint-icon { background-color: var(--finish-color); border-color: var(--finish-color); transform: scale(1.2); }
         .checkpoint.final .checkpoint-content { border-left-color: var(--finish-color); }
         .checkpoint.final.active .checkpoint-content { border-left-color: var(--live-color); }
-
         .tag { display: inline-block; margin-top: 12px; padding: 5px 12px; background-color: #eaf6ff; color: var(--primary-color); border-radius: 15px; font-size: 0.8rem; font-weight: 700; }
 
         /* --- Checklist Section --- */
-        .checklist-container {
-            padding: 20px;
-            margin: 10px 20px;
-            background-color: var(--card-color);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-        .checklist-container h2 {
-            text-align: center;
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .checklist-container ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .checklist-container li {
-            background-color: var(--background-color);
-            padding: 10px;
-            border-radius: 8px;
-        }
+        .checklist-container { padding: 20px; margin: 10px 20px; background-color: var(--card-color); border-radius: 15px; box-shadow: var(--shadow); }
+        .checklist-container h2 { text-align: center; color: var(--primary-color); margin-top: 0; margin-bottom: 20px; }
+        .checklist-container ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .checklist-container li { background-color: var(--background-color); padding: 10px; border-radius: 8px; }
+
+        /* --- Weather Modal --- */
+        #weather-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .weather-modal-content { background: var(--background-color); padding: 20px; border-radius: 15px; width: 90%; max-width: 500px; max-height: 80vh; overflow-y: auto; }
+        .weather-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; }
+        .weather-modal-header h2 { margin: 0; color: var(--primary-color); }
+        #close-weather-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        .weather-location { margin-bottom: 20px; }
+        .weather-location h3 { margin: 0 0 10px 0; }
+        .current-weather { display: flex; align-items: center; gap: 15px; background: var(--card-color); padding: 10px; border-radius: 10px; }
+        .current-weather .icon { font-size: 2.5rem; }
+        .hourly-forecast { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; }
+        .hourly-item { flex: 0 0 65px; text-align: center; background: var(--card-color); padding: 10px; border-radius: 10px; }
+        .hourly-item .icon { font-size: 1.5rem; }
+        .hourly-item .date { font-size: 0.7rem; color: #888; }
 
         /* --- KUMPULAN ANIMASI --- */
         @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
@@ -248,53 +230,13 @@
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
         /* --- Footer dengan Tombol Aksi --- */
-        .action-footer { 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            padding: 15px; 
-            background-color: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            text-align: center; 
-            box-sizing: border-box; 
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            align-items: center;
-        }
-        .button { 
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 45%; 
-            max-width: 200px; 
-            padding: 15px 10px; 
-            color: white; 
-            text-decoration: none; 
-            font-weight: 700; 
-            border-radius: 15px; 
-            transition: transform 0.2s ease, box-shadow 0.2s ease; 
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-        }
-        .button:active { 
-            transform: translateY(2px); 
-        }
-        .map-button {
-            background: linear-gradient(135deg, #28a745, #218838);
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
-        }
-        .download-button {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
-        }
+        .action-footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 15px; background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); text-align: center; box-sizing: border-box; border-top: 1px solid #eee; display: flex; justify-content: center; gap: 10px; align-items: center; }
+        .button { display: flex; align-items: center; justify-content: center; gap: 8px; width: 45%; max-width: 200px; padding: 15px 10px; color: white; text-decoration: none; font-weight: 700; border-radius: 15px; transition: transform 0.2s ease, box-shadow 0.2s ease; font-size: 0.9rem; border: none; cursor: pointer; }
+        .button:active { transform: translateY(2px); }
+        .map-button { background: linear-gradient(135deg, #28a745, #218838); box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); }
+        .download-button { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3); }
 
-        /* --- Media Queries untuk Fine-Tuning di Layar Kecil --- */
+        /* --- Media Queries --- */
         @media (max-width: 375px) {
             .hero h1 { font-size: 1.8rem; }
             .hero h2 { font-size: 1rem; }
@@ -309,6 +251,7 @@
 <body>
 
     <header class="hero">
+        <button id="weather-btn">☀️</button>
         <h2 id="event-status-title">Rundown Liburan Seru!</h2>
         <h1>Banjarnegara → Surumanis & TOS</h1>
         <p>Jadwal Lengkap Petualangan Kita!</p>
@@ -341,22 +284,22 @@
                 <span class="tag">Perjalanan</span>
             </div>
         </div>
-        <div class="checkpoint" data-time-start="08:00" data-time-end="08:45">
-            <div class="checkpoint-icon">😎</div>
-            <div class="checkpoint-content bg-beach">
-                <h3>08.00 - 08.45 WIB - Free Time</h3>
-                <p class="location-info">📍 Pantai Surumanis</p>
-                <p>Tiba di Pantai Surumanis! Waktunya menikmati pemandangan dan udara segar pagi hari.</p>
-                <span class="tag">Aktivitas</span>
-            </div>
-        </div>
-        <div class="checkpoint" data-time-start="08:45" data-time-end="09:15">
+        <div class="checkpoint" data-time-start="08:00" data-time-end="08:30">
             <div class="checkpoint-icon food-icon">🍳</div>
             <div class="checkpoint-content bg-food">
-                <h3>08.45 - 09.15 WIB - Sarapan</h3>
+                <h3>08.00 - 08.30 WIB - Sarapan</h3>
                 <p class="location-info">📍 Pantai Surumanis</p>
                 <p>Isi energi dengan sarapan bersama di pinggir pantai. Mantap!</p>
                 <span class="tag">Kuliner</span>
+            </div>
+        </div>
+        <div class="checkpoint" data-time-start="08:30" data-time-end="09:15">
+            <div class="checkpoint-icon">😎</div>
+            <div class="checkpoint-content bg-beach">
+                <h3>08.30 - 09.15 WIB - Free Time</h3>
+                <p class="location-info">📍 Pantai Surumanis</p>
+                <p>Waktunya menikmati pemandangan dan udara segar pagi hari.</p>
+                <span class="tag">Aktivitas</span>
             </div>
         </div>
         <div class="checkpoint" data-time-start="09:15" data-time-end="10:45">
@@ -404,13 +347,22 @@
                 <span class="tag">Games</span>
             </div>
         </div>
-        <div class="checkpoint" data-time-start="14:45" data-time-end="23:59">
+        <div class="checkpoint" data-time-start="14:45" data-time-end="18:00">
             <div class="checkpoint-icon">🌅</div>
             <div class="checkpoint-content bg-beach">
-                <h3>14.45 - Selesai - Free Time</h3>
+                <h3>14.45 - 18.00 WIB - Free Time</h3>
                 <p class="location-info">📍 TOS Cilacap</p>
                 <p>Waktu bebas untuk menikmati suasana, berfoto, atau membeli oleh-oleh sebelum pulang.</p>
                 <span class="tag">SANTAI</span>
+            </div>
+        </div>
+        <div class="checkpoint" data-time-start="18:00" data-time-end="20:00">
+            <div class="checkpoint-icon travel-icon">🚗</div>
+            <div class="checkpoint-content bg-travel">
+                <h3>18.00 - 20.00 WIB - OTW Pulang</h3>
+                <p class="location-info">📍 Cilacap - Banjarnegara</p>
+                <p>Perjalanan kembali ke Banjarnegara. Hati-hati di jalan!</p>
+                <span class="tag">PULANG</span>
             </div>
         </div>
     </main>
@@ -426,8 +378,24 @@
             <li>✅ Sandal Jepit</li>
             <li>✅ Uang Tunai Secukupnya</li>
             <li>✅ Semangat & Hati Gembira</li>
+            <li>✅ Tumblr</li>
+            <li>✅ Kaos Putih Kantor</li>
+            <li>✅ Jilbab Navy/Hitam</li>
         </ul>
     </section>
+
+    <!-- Weather Modal Structure -->
+    <div id="weather-modal">
+        <div class="weather-modal-content">
+            <div class="weather-modal-header">
+                <h2>Prakiraan Cuaca</h2>
+                <button id="close-weather-btn">&times;</button>
+            </div>
+            <div id="weather-data-container">
+                <!-- Weather data will be injected here by JS -->
+            </div>
+        </div>
+    </div>
     
     <footer class="action-footer">
         <a href="https://www.google.com/maps/dir/Banjarnegara,+Jawa+Tengah/Gombong,+Kebumen/Pantai+Surumanis,+Kebumen/TOS+Cilacap" target="_blank" class="button map-button">
@@ -439,6 +407,7 @@
     </footer>
 
     <script>
+    function initializeApp() {
         // --- Countdown Timer Logic ---
         const countdownElement = document.getElementById('countdown');
         const daysEl = document.getElementById('days');
@@ -459,7 +428,7 @@
 
             if (distance < 0) {
                 clearInterval(countdownInterval);
-                countdownElement.style.display = 'none'; // Hide countdown when event starts
+                if(countdownElement) countdownElement.style.display = 'none';
                 return;
             }
 
@@ -468,10 +437,10 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            daysEl.innerHTML = days < 10 ? '0' + days : days;
-            hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
-            minutesEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
-            secondsEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+            if(daysEl) daysEl.innerHTML = days < 10 ? '0' + days : days;
+            if(hoursEl) hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
+            if(minutesEl) minutesEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+            if(secondsEl) secondsEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
         };
         const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
@@ -485,13 +454,13 @@
             const now = new Date();
             
             if (now.getFullYear() !== eventYear || now.getMonth() !== eventMonth || now.getDate() !== eventDay) {
-                statusTitle.textContent = "Rundown Liburan Seru!"; // Keep default title before event day
+                if(statusTitle) statusTitle.textContent = "Rundown Liburan Seru!";
                 return;
             }
 
             let activeCheckpoint = null;
             let lastCheckpointPassed = null;
-            let newTitle = "ACARA SEDANG BERLANGSUNG!"; // Default title on event day
+            let newTitle = "ACARA SEDANG BERLANGSUNG!";
 
             checkpoints.forEach(checkpoint => {
                 const startTimeStr = checkpoint.dataset.timeStart;
@@ -506,18 +475,18 @@
 
                 if (now >= eventStartTime && now < eventEndTime) {
                     activeCheckpoint = checkpoint;
-                    // --- UPDATE TITLE LOGIC ---
                     switch(startTimeStr) {
                         case '05:15': newTitle = "KUMPUL! AYO JANGAN SAMPAI TELAT!"; break;
                         case '06:00': newTitle = "OTW SURUMANIS LURR!!!"; break;
-                        case '08:00': newTitle = "ENJOY SURUMANIS!"; break;
-                        case '08:45': newTitle = "WAKTUNYA SARAPAN!"; break;
+                        case '08:00': newTitle = "WAKTUNYA SARAPAN!"; break;
+                        case '08:30': newTitle = "ENJOY SURUMANIS!"; break;
                         case '09:15': newTitle = "GAMES TIME! SEMANGAT!"; break;
                         case '10:45': newTitle = "SIAP-SIAP LANJUT!"; break;
                         case '11:15': newTitle = "LANJUT OTW TOS CILACAP!"; break;
                         case '13:00': newTitle = "SELAMAT DATANG DI TOS CILACAP!"; break;
                         case '14:00': newTitle = "GAMES KEDUA DIMULAI!"; break;
                         case '14:45': newTitle = "WAKTUNYA SANTAI!"; break;
+                        case '18:00': newTitle = "OTW PULANG! HATI-HATI DI JALAN!"; break;
                         default: newTitle = "ACARA SEDANG BERLANGSUNG!";
                     }
                 }
@@ -526,7 +495,7 @@
                 }
             });
 
-            statusTitle.textContent = newTitle; // Update title text
+            if(statusTitle) statusTitle.textContent = newTitle;
 
             const targetCheckpoint = activeCheckpoint || lastCheckpointPassed;
 
@@ -535,11 +504,10 @@
                 
                 const icon = targetCheckpoint.querySelector('.checkpoint-icon');
                 const progressHeight = targetCheckpoint.offsetTop + (icon.offsetHeight / 2);
-                timelineProgress.style.height = `${progressHeight}px`;
+                if(timelineProgress) timelineProgress.style.height = `${progressHeight}px`;
             }
         };
 
-        // Run the progress update every second on event day
         setInterval(updateTimelineProgress, 1000);
         updateTimelineProgress();
 
@@ -547,37 +515,163 @@
         const downloadBtn = document.getElementById('download-btn');
         const footer = document.querySelector('.action-footer');
 
-        downloadBtn.addEventListener('click', () => {
-            footer.style.display = 'none';
-            window.scrollTo(0, 0);
+        if(downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                if(footer) footer.style.display = 'none';
+                window.scrollTo(0, 0);
 
-            // Matikan animasi sementara
-            checkpoints.forEach(el => el.classList.add('no-animation'));
+                checkpoints.forEach(el => el.classList.add('no-animation'));
 
-            // Beri sedikit waktu agar browser render ulang tanpa animasi
-            setTimeout(() => {
-                html2canvas(document.body, {
-                    allowTaint: true,
-                    useCORS: true,
-                    scrollY: -window.scrollY,
-                    scale: 2 // Meningkatkan resolusi 2x
-                }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = 'rundown-liburan-HD.jpg';
-                    link.href = canvas.toDataURL('image/jpeg', 0.95); // Kualitas 95%
-                    link.click();
+                setTimeout(() => {
+                    html2canvas(document.body, {
+                        allowTaint: true,
+                        useCORS: true,
+                        scrollY: -window.scrollY,
+                        scale: 2
+                    }).then(canvas => {
+                        const link = document.createElement('a');
+                        link.download = 'rundown-liburan-HD.jpg';
+                        link.href = canvas.toDataURL('image/jpeg', 0.95);
+                        link.click();
 
-                    // Kembalikan seperti semula
-                    footer.style.display = 'flex';
-                    checkpoints.forEach(el => el.classList.remove('no-animation'));
-                }).catch(err => {
-                    console.error('oops, something went wrong!', err);
-                    // Pastikan tombol dan animasi kembali jika ada error
-                    footer.style.display = 'flex';
-                    checkpoints.forEach(el => el.classList.remove('no-animation'));
-                });
-            }, 100); // Delay 100ms
+                        if(footer) footer.style.display = 'flex';
+                        checkpoints.forEach(el => el.classList.remove('no-animation'));
+                    }).catch(err => {
+                        console.error('oops, something went wrong!', err);
+                        if(footer) footer.style.display = 'flex';
+                        checkpoints.forEach(el => el.classList.remove('no-animation'));
+                    });
+                }, 100);
+            });
+        }
+
+        // --- Weather Modal Logic ---
+        const weatherBtn = document.getElementById('weather-btn');
+        const weatherModal = document.getElementById('weather-modal');
+        const closeWeatherBtn = document.getElementById('close-weather-btn');
+        const weatherDataContainer = document.getElementById('weather-data-container');
+
+        const locations = {
+            'Banjarnegara': { lat: -7.40, lon: 109.69 },
+            'Pantai Surumanis': { lat: -7.76, lon: 109.47 },
+            'TOS Cilacap': { lat: -7.74, lon: 109.02 }
+        };
+
+        function getWeatherIcon(code) {
+            if ([0, 1].includes(code)) return '☀️';
+            if ([2].includes(code)) return '🌤️';
+            if ([3].includes(code)) return '☁️';
+            if ([45, 48].includes(code)) return '🌫️';
+            if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(code)) return '🌧️';
+            if ([71, 73, 75, 77, 85, 86].includes(code)) return '❄️';
+            if ([95, 96, 99].includes(code)) return '⛈️';
+            return '❓';
+        }
+
+        async function fetchWeather(lat, lon) {
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&hourly=temperature_2m,weather_code&forecast_days=2`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error("Failed to fetch weather:", error);
+                return null;
+            }
+        }
+
+        function renderWeather(name, data) {
+            if (!data) {
+                return `<div class="weather-location"><h3>${name}</h3><p>Gagal memuat data cuaca.</p></div>`;
+            }
+
+            const current = data.current;
+            const hourly = data.hourly;
+            const now = new Date();
+            const todayDate = now.getDate();
+
+            let hourlyHTML = '';
+            for (let i = 0; i < 24; i++) {
+                const hourIndex = now.getHours() + i;
+                if (hourIndex >= hourly.time.length) break;
+                
+                const forecastDateObj = new Date(hourly.time[hourIndex]);
+                const time = forecastDateObj.getHours();
+                const temp = Math.round(hourly.temperature_2m[hourIndex]);
+                const code = hourly.weather_code[hourIndex];
+                
+                let dateHTML = '';
+                if (forecastDateObj.getDate() !== todayDate) {
+                    dateHTML = `<div class="date">${forecastDateObj.getDate()}/${forecastDateObj.getMonth() + 1}</div>`;
+                }
+
+                hourlyHTML += `
+                    <div class="hourly-item">
+                        <div>${time}:00</div>
+                        ${dateHTML}
+                        <div class="icon">${getWeatherIcon(code)}</div>
+                        <div>${temp}°C</div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="weather-location">
+                    <h3>${name}</h3>
+                    <div class="current-weather">
+                        <div class="icon">${getWeatherIcon(current.weather_code)}</div>
+                        <div>
+                            <div>Sekarang</div>
+                            <strong>${Math.round(current.temperature_2m)}°C</strong>
+                        </div>
+                    </div>
+                    <div class="hourly-forecast">${hourlyHTML}</div>
+                </div>
+            `;
+        }
+
+        async function showWeather() {
+            if(weatherModal) weatherModal.style.display = 'flex';
+            if(weatherDataContainer) weatherDataContainer.innerHTML = '<p>Memuat data cuaca...</p>';
+
+            let finalHTML = '';
+
+            if (navigator.geolocation) {
+                try {
+                    const position = await new Promise((resolve, reject) => {
+                        navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
+                    });
+                    const { latitude, longitude } = position.coords;
+                    const weatherData = await fetchWeather(latitude, longitude);
+                    finalHTML += renderWeather('📍 Lokasi Saat Ini', weatherData);
+                } catch (error) {
+                    console.warn("Could not get GPS location:", error.message);
+                }
+            }
+
+            for (const name in locations) {
+                const { lat, lon } = locations[name];
+                const weatherData = await fetchWeather(lat, lon);
+                finalHTML += renderWeather(name, weatherData);
+            }
+
+            if(weatherDataContainer) weatherDataContainer.innerHTML = finalHTML;
+        }
+
+        if(weatherBtn) weatherBtn.addEventListener('click', showWeather);
+        if(closeWeatherBtn) closeWeatherBtn.addEventListener('click', () => weatherModal.style.display = 'none');
+        if(weatherModal) weatherModal.addEventListener('click', (e) => {
+            if (e.target === weatherModal) {
+                weatherModal.style.display = 'none';
+            }
         });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+        initializeApp();
+    }
     </script>
 
 </body>
